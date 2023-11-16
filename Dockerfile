@@ -9,7 +9,7 @@ RUN apt-get install -y gnupg
 
 # Set the Chrome repo.
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+  && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 
 # Install Chrome.
 RUN apt-get update && apt-get -y install google-chrome-stable
@@ -87,11 +87,11 @@ ENV CHROMEDRIVER_HOME /chromedriver/$CHROME_VERSION/chromedriver-linux64
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.39.5/install.sh | bash \
   && . $NVM_DIR/nvm.sh \
   && nvm install $PROJECT_NODE_VERSION \
-#  && nvm install $NEWER_NODE_VERSION \
+  #  && nvm install $NEWER_NODE_VERSION \
   && nvm alias default $PROJECT_NODE_VERSION \
-#     && nvm use $NEWER_NODE_VERSION \
-#     && npx @puppeteer/browsers install chrome@$CHROME_VERSION \
-#     && npx @puppeteer/browsers install chromedriver@$CHROME_VERSION \
+  #     && nvm use $NEWER_NODE_VERSION \
+  #     && npx @puppeteer/browsers install chrome@$CHROME_VERSION \
+  #     && npx @puppeteer/browsers install chromedriver@$CHROME_VERSION \
   && nvm use default
 #     && mv /usr/bin/chromedriver /usr/bin/chromedriver-old \
 #     && ln -fs $CHROMEDRIVER_HOME/chromedriver /usr/bin/chromedriver
@@ -105,7 +105,7 @@ ENV PATH      /versions/node/v$PROJECT_NODE_VERSION/bin:$PATH
 
 RUN apt-get install -y unzip
 
-ENV CHROME_VERSION=120.0.6099.18
+ENV CHROME_VERSION=119.0.6045.159
 
 RUN curl -o chrome-linux64.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROME_VERSION/linux64/chrome-linux64.zip \
   && unzip -q chrome-linux64.zip -d /chrome-for-testing \
@@ -118,9 +118,7 @@ RUN curl -o chromedriver-linux64.zip https://edgedl.me.gvt1.com/edgedl/chrome/ch
   && rm -f chromedriver-linux64.zip
 
 ENV PATH      /chrome-for-testing/chromedriver-linux64:$PATH
-#
-#
-#
+
 ##################################################
 ## Copy and Install Test Project
 ##################################################
